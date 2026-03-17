@@ -1,0 +1,47 @@
+# Archivos compilados 
+*.o
+*.obj
+*.out
+*.exe
+*.dll
+*.so
+*.a
+
+# Carpetas de build
+/bin/
+/build/
+/debug/
+/release/
+/out/
+
+# Archivos generados por compiladores
+*.d
+*.gcda
+*.gcno
+*.gcov
+
+# Archivos de profiling
+gmon.out
+
+#Archivos temporales
+*.log
+*.tmp
+*.temp
+
+# Archivos de editores
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Configuracion de Eclipse
+.project
+.classpath
+.settings/
+
+# Archivos temporales del sistema
+.DS_Store
+Thumbs.db
+
+

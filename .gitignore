@@ -1,11 +1,7 @@
 # Archivos compilados 
 *.o
-*.obj
 *.out
 *.exe
-*.dll
-*.so
-*.a
 
 # Carpetas de build
 /bin/
@@ -26,7 +22,6 @@ gmon.out
 #Archivos temporales
 *.log
 *.tmp
-*.temp
 
 # Archivos de editores
 .vscode/
@@ -44,4 +39,6 @@ gmon.out
 .DS_Store
 Thumbs.db
 
+#ECLIPSE CDT  (C/C++)
+.cproject
 

@@ -12,5 +12,10 @@ typedef struct {
     int  activo;
 } Paquete;
 
+void crearPaquete(void);
+void eliminarPaquete(void);
+void consultarPaquete(void);
+void listadoPaquetes(void);
+void menuPaquetes(void);
 
 #endif /* PAQUETE_H_ */

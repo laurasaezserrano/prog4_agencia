@@ -10,5 +10,11 @@ typedef struct {
     int  activo;
 } Transporte;
 
+void altaTransporte(void);
+void bajaTransporte(void);
+void consultarTransporte(void);
+void asociarTransporte(void);
+void listadoTransportes(void);
+void menuTransporte(void);
 
 #endif /* TRANSPORTE_H_ */

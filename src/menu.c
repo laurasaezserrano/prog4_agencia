@@ -1,10 +1,3 @@
-/*
- * menu.c
- *
- *  Created on: 17 mar 2026
- *      Author: zaira.diez
- */
-
 #include <stdio.h>
 #include "menu.h"
 

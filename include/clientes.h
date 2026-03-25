@@ -1,10 +1,3 @@
-/*
- * clientes.h
- *
- *  Created on: 17 mar 2026
- *      Author: zaira.diez
- */
-
 #ifndef CLIENTES_H_
 #define CLIENTES_H_
 

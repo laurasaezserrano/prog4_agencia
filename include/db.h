@@ -1,10 +1,3 @@
-/*
- * db.h
- *
- *  Created on: 17 mar 2026
- *      Author: zaira.diez
- */
-
 #ifndef DB_H_
 #define DB_H_
 

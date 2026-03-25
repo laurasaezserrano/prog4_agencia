@@ -1,11 +1,3 @@
-/*
- * config.c
- *
- *  Created on: 17 mar 2026
- *      Author: zaira.diez
- */
-
-
 #include <stdio.h>
 #include <string.h>
 #include "config.h"

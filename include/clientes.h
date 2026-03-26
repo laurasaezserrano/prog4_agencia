@@ -23,6 +23,4 @@ int buscar_cliente_por_dni(sqlite3 *db, const char *dni);
 void listar_clientes(sqlite3 *db);
 
 
-
-
 #endif /* CLIENTES_H_ */

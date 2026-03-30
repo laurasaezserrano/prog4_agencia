@@ -127,7 +127,7 @@ void listadoAlojamientos(void) {
 }
 
 // MENU
-void menuAlojamiento(void) {
+void menuAlojamiento() {
     int opcion;
 
     do {

@@ -23,7 +23,7 @@ int guardarPaquete(Paquete p) {
     }
 
     // fwrite devuelve el número de elementos escritos correctamente
-    size_t escritos = fwrite(p, sizeof(Paquete), 1, f);
+    size_t escritos = fwrite(&p, sizeof(Paquete), 1, f);
 
     fclose(f);
 

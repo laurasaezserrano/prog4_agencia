@@ -161,7 +161,7 @@ void listadoTransportes(void) {
 }
 
 // MENU
-void menuTransporte(void) {
+void menuTransporte() {
     int opcion;
 
     do {

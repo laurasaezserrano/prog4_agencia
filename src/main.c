@@ -28,7 +28,6 @@ int main() {
     mostrar_menu(db);
 
     db_cerrar(db);
-    // return
 
     return 0;
 }

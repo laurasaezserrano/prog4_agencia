@@ -8,6 +8,8 @@ void mostrar_menu(sqlite3 *db) {
         printf("\n--- MENU ---\n");
         printf("1. Clientes\n");
         printf("2. Paquetes\n");
+        printf("3. Alojamientos\n");
+        printf("4. Transportes\n");
         printf("0. Salir\n");
         printf("Opcion: ");
         scanf("%d", &opcion);
@@ -18,6 +20,12 @@ void mostrar_menu(sqlite3 *db) {
             break;
             case 2:
             menu_paquetes(db);
+            break;
+            case 3:
+            menuAlojamiento(db);
+            break;
+            case 4:
+            menuTransporte(db);
             break;
             case 0:
             printf("\nSaliendo...\n");

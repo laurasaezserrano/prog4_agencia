@@ -152,6 +152,8 @@ void menuPaquetes(void) {
             case 2: eliminarPaquete(); break;
             case 3: consultarPaquete(); break;
             case 4: listadoPaquetes(); break;
+            case 0: printf("Volviendo al menú principal...\n"); break;
+            default: printf("Opción no válida.\n");
         }
 
     } while (opcion != 0);

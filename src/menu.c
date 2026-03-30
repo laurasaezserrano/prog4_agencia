@@ -12,5 +12,19 @@ void mostrar_menu(sqlite3 *db) {
         printf("Opcion: ");
         scanf("%d", &opcion);
 
+        switch (opcion) {
+        	case 1:
+            menu_clientes(db);
+            break;
+            case 2:
+            menu_paquetes(db);
+            break;
+            case 0:
+            printf("\nSaliendo...\n");
+            break;
+            default:
+            printf("Opción no válida. Intente de nuevo.\n");
+        }
+
     } while (opcion != 0);
 }

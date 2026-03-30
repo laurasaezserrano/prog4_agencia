@@ -12,11 +12,26 @@
 #define ARCHIVO "paquetes.dat"
 
 // Guardar paquete
-void guardarPaquete(Paquete p) {
+int guardarPaquete(Paquete p) {
+
+    // Abrimos en modo "ab" (append binary) para añadir al final
     FILE *f = fopen(ARCHIVO, "ab");
-    if (f != NULL) {
-        fwrite(&p, sizeof(Paquete), 1, f);
-        fclose(f);
+
+    if (f == NULL) {
+    	printf("Error: No se pudo abrir el archivo %s para guardar.\n", ARCHIVO);
+        return 0; // Fallo
+    }
+
+    // fwrite devuelve el número de elementos escritos correctamente
+    size_t escritos = fwrite(p, sizeof(Paquete), 1, f);
+
+    fclose(f);
+
+    if (escritos == 1) {
+        return 1; // Éxito
+    } else {
+        printf("Error: Fallo al escribir los datos en el disco.\n");
+        return 0; // Fallo
     }
 }
 
@@ -45,7 +60,11 @@ void crearPaquete(void) {
     p.plazas_disponibles = p.plazas_totales;
     p.activo = 1;
 
-    guardarPaquete(p);
+    if (guardar_paquete(&p)) {
+        printf("Paquete guardado correctamente.\n");
+    } else {
+        printf("Hubo un problema al guardar el paquete. Inténtelo de nuevo.\n");
+    }
 
     printf("Paquete creado correctamente.\n");
 }

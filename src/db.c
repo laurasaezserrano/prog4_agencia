@@ -71,6 +71,7 @@ int db_crear_tablas(sqlite3 *db) {
             "FOREIGN KEY(id_paquete) REFERENCES paquetes(codigo)";
             ");";
 
+    /* Admin por defecto */
     const char *sql_insert_admin =
         "INSERT OR IGNORE INTO administradores (id, usuario, clave) "
         "VALUES (1, 'admin', '1234');";

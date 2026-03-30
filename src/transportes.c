@@ -20,7 +20,12 @@ void guardarTransporte(Transporte t) {
     }
 }
 
-void altaTransporte(void) {
+void altaTransporte(sqlite3 *db) { // hay que terminar todo lo de db y guardarlo ahi
+	sqlite3_stmt *stmt = NULL;
+	const char   *sql  =
+	"INSERT INTO transportes (codigo, tipo, fecha_salida, fecha_llegada, cod_paquete, activo) "
+			"VALUES (?, ?, ?, ?, ?, 1);";
+
     Transporte t;
 
     printf("Codigo: ");
@@ -43,6 +48,7 @@ void altaTransporte(void) {
     guardarTransporte(t);
 
     printf("Transporte dado de alta correctamente.\n");
+
 }
 
 

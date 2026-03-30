@@ -87,6 +87,24 @@ int db_crear_tablas(sqlite3 *db) {
         return 1;
     }
 
+    if (sqlite3_exec(db, sql_alojamientos, 0, 0, &err) != SQLITE_OK) {
+            printf("Error SQL al crear alojamientos: %s\n", err);
+            sqlite3_free(err);
+            return 1;
+        }
+
+    if (sqlite3_exec(db, sql_paquetes, 0, 0, &err) != SQLITE_OK) {
+            printf("Error SQL al crear paquetes: %s\n", err);
+            sqlite3_free(err);
+            return 1;
+        }
+
+    if (sqlite3_exec(db, sql_transportes, 0, 0, &err) != SQLITE_OK) {
+            printf("Error SQL al crear transportes: %s\n", err);
+            sqlite3_free(err);
+            return 1;
+        }
+
     if (sqlite3_exec(db, sql_insert_admin, 0, 0, &err) != SQLITE_OK) {
         printf("Error SQL al insertar admin: %s\n", err);
         sqlite3_free(err);

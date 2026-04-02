@@ -1,7 +1,7 @@
 #ifndef AUTH_H_
 #define AUTH_H_
 
-#include <sqlite3.h>
+#include "sqlite3.h"
 
 // Definición de estructura
 typedef struct {

@@ -1,5 +1,8 @@
 #include <stdio.h>
 #include "../include/menu.h"
+#include "../include/alojamiento.h"
+#include "../include/transporte.h"
+#include "../include/paquete.h"
 
 void mostrar_menu(sqlite3 *db) {
     int opcion;
@@ -19,10 +22,10 @@ void mostrar_menu(sqlite3 *db) {
             menu_clientes(db);
             break;
             case 2:
-            menu_paquetes(db);
+            menuPaquetes();
             break;
             case 3:
-            menuAlojamiento(db);
+            menuAlojamiento();
             break;
             case 4:
             menuTransporte(db);

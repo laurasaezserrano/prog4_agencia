@@ -1,7 +1,7 @@
 #ifndef MENU_H_
 #define MENU_H_
 
-#include <sqlite3.h>
+#include "sqlite3.h"
 
 // Menú principal
 void mostrar_menu(sqlite3 *db);
@@ -13,7 +13,6 @@ void agregar_cliente(sqlite3 *db);
 void eliminar_cliente(sqlite3 *db);
 
 // Submenú Paquetes
-void menu_paquetes(sqlite3 *db);
 void listar_paquetes(sqlite3 *db);
 void agregar_paquete(sqlite3 *db);
 void eliminar_paquete(sqlite3 *db);

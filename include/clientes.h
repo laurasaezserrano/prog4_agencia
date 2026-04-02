@@ -8,7 +8,7 @@
 #ifndef CLIENTES_H_
 #define CLIENTES_H_
 
-#include <sqlite3.h>
+#include "sqlite3.h"
 
 // Definición de la estructura Cliente
 typedef struct {

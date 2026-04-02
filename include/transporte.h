@@ -1,6 +1,8 @@
 #ifndef TRANSPORTE_H_
 #define TRANSPORTE_H_
 
+#include "../include/sqlite3.h"
+
 typedef struct {
     char codigo[10];
     char tipo[20];
@@ -10,11 +12,11 @@ typedef struct {
     int  activo;
 } Transporte;
 
-void altaTransporte(void);
+void altaTransporte(sqlite3 *db);
 void bajaTransporte(void);
 void consultarTransporte(void);
 void asociarTransporte(void);
 void listadoTransportes(void);
-void menuTransporte(void);
+void menuTransporte(sqlite3 *db);
 
 #endif

@@ -161,7 +161,7 @@ void listadoTransportes(void) {
 }
 
 // MENU
-void menuTransporte(void) {
+void menuTransporte(sqlite3 *db) {
     int opcion;
 
     do {
@@ -176,7 +176,7 @@ void menuTransporte(void) {
         scanf("%d", &opcion);
 
         switch (opcion) {
-            case 1: altaTransporte(); break;
+            case 1: altaTransporte(db); break;
             case 2: bajaTransporte(); break;
             case 3: consultarTransporte(); break;
             case 4: asociarTransporte(); break;

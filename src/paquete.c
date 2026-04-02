@@ -23,8 +23,7 @@ int guardarPaquete(Paquete p) {
     }
 
     // fwrite devuelve el número de elementos escritos correctamente
-    size_t escritos = fwrite(p, sizeof(Paquete), 1, f);
-
+    size_t escritos = fwrite(&p, sizeof(Paquete), 1, f);
     fclose(f);
 
     if (escritos == 1) {
@@ -60,7 +59,7 @@ void crearPaquete(void) {
     p.plazas_disponibles = p.plazas_totales;
     p.activo = 1;
 
-    if (guardar_paquete(&p)) {
+    if (guardarPaquete(p)) {
         printf("Paquete guardado correctamente.\n");
     } else {
         printf("Hubo un problema al guardar el paquete. Inténtelo de nuevo.\n");

@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "alojamiento.h"
+#include "../include/alojamiento.h"
 
 #define ARCHIVO "alojamientos.dat"
 

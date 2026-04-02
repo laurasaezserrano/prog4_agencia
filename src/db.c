@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "sqlite3.h"
-#include "db.h"
+#include "../include/sqlite3.h"
+#include "../include/db.h"
 
 int db_abrir(sqlite3 **db, const char *ruta) {
     if (sqlite3_open(ruta, db) != SQLITE_OK) {

@@ -3,7 +3,7 @@
 
 typedef struct {
     char codigo[10];
-    char tipo[20];        // avion, tren, autobus...
+    char tipo[20];
     char fecha_salida[11];
     char fecha_llegada[11];
     int  cod_paquete;
@@ -17,4 +17,4 @@ void asociarTransporte(void);
 void listadoTransportes(void);
 void menuTransporte(void);
 
-#endif /* TRANSPORTE_H_ */
+#endif

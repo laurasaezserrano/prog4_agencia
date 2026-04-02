@@ -10,4 +10,11 @@ typedef struct {
     int  activo;
 } Alojamiento;
 
-#endif /* ALOJAMIENTO_H_ */
+void guardarAlojamiento(Alojamiento a);
+void altaAlojamiento(void);
+void bajaAlojamiento(void);
+void consultarAlojamiento(void);
+void listadoAlojamientos(void);
+void menuAlojamiento(void);
+
+#endif

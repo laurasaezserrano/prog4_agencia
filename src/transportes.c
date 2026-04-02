@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "transporte.h"
+#include "../include/transporte.h"
 
 #define ARCHIVO "transportes.dat"
 

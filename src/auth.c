@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-#include "auth.h"
+#include "../include/auth.h"
 
 int login_admin(sqlite3 *db) {
     char user[50], pass[50];

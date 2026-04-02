@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include "config.h"
-#include "db.h"
-#include "auth.h"
-#include "menu.h"
+#include "../include/config.h"
+#include "../include/db.h"
+#include "../include/auth.h"
+#include "../include/menu.h"
 
 int main() {
     Config cfg;

@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "paquete.h"
+#include "../include/paquete.h"
 
 #define ARCHIVO "paquetes.dat"
 

@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "menu.h"
+#include "../include/menu.h"
 
 void mostrar_menu(sqlite3 *db) {
     int opcion;

@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "clientes.h"
+#include "../include/clientes.h"
+#include "../include/sqlite3.h"
 
 #define MAX_INPUT 256
 

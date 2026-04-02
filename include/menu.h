@@ -17,6 +17,10 @@ void listar_paquetes(sqlite3 *db);
 void agregar_paquete(sqlite3 *db);
 void eliminar_paquete(sqlite3 *db);
 
+void menuPaquetes(void);
+void menuAlojamientos(void);
+void menuTransportes(sqlite3 *db);
+
 // Base de datos
 void inicializar_db(sqlite3 *db);
 

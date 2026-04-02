@@ -9,6 +9,7 @@ typedef struct {
     int nivel_permiso;
 } Sesion;
 
+int login_admin(sqlite3 *db);
 int login(sqlite3 *db, const char *usuario, const char *password);
 void logout(void);
 

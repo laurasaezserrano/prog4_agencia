@@ -45,7 +45,7 @@ int db_crear_tablas(sqlite3 *db) {
             "direccion TEXT, "
             "tipo TEXT, "
             "cod_ciudad TEXT, "
-            "activo INTEGER DEFAULT 1";
+            "activo INTEGER DEFAULT 1"
     		");";
 
     const char *sql_paquetes =
@@ -57,7 +57,7 @@ int db_crear_tablas(sqlite3 *db) {
             "origen TEXT, "
             "plazas_totales INTEGER, "
             "plazas_disponibles INTEGER, "
-            "activo INTEGER DEFAULT 1;";
+            "activo INTEGER DEFAULT 1"
     		");";
 
     const char *sql_transportes =
@@ -68,7 +68,7 @@ int db_crear_tablas(sqlite3 *db) {
             "fecha_llegada TEXT, "
             "id_paquete INTEGER, "
             "activo INTEGER DEFAULT 1, "
-            "FOREIGN KEY(id_paquete) REFERENCES paquetes(codigo)";
+            "FOREIGN KEY(id_paquete) REFERENCES paquetes(codigo)"
             ");";
 
     /* Admin por defecto */

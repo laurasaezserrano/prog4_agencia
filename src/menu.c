@@ -3,39 +3,36 @@
 #include "../include/alojamiento.h"
 #include "../include/transporte.h"
 #include "../include/paquete.h"
+#include <stdio.h>
 
 void mostrar_menu(sqlite3 *db) {
     int opcion;
 
     do {
-        printf("\n--- MENU ---\n");
+        printf("\n===== MENU PRINCIPAL =====\n");
         printf("1. Clientes\n");
         printf("2. Paquetes\n");
         printf("3. Alojamientos\n");
         printf("4. Transportes\n");
         printf("0. Salir\n");
         printf("Opcion: ");
+
         scanf("%d", &opcion);
 
-        switch (opcion) {
-        	case 1:
-            menu_clientes(db);
-            break;
+        switch(opcion) {
+            case 1:
+                printf("Clientes...\n");
+                break;
             case 2:
-            menuPaquetes();
-            break;
+                printf("Paquetes...\n");
+                break;
             case 3:
-            menuAlojamiento();
-            break;
+                printf("Alojamientos...\n");
+                break;
             case 4:
-            menuTransporte(db);
-            break;
-            case 0:
-            printf("\nSaliendo...\n");
-            break;
-            default:
-            printf("Opción no válida. Intente de nuevo.\n");
+                printf("Transportes...\n");
+                break;
         }
 
-    } while (opcion != 0);
+    } while(opcion != 0);
 }

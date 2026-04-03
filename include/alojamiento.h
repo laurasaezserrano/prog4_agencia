@@ -1,5 +1,6 @@
 #ifndef ALOJAMIENTO_H_
 #define ALOJAMIENTO_H_
+#include "sqlite3.h"
 
 typedef struct {
     char codigo[10];
@@ -11,10 +12,10 @@ typedef struct {
 } Alojamiento;
 
 void guardarAlojamiento(Alojamiento a);
-void altaAlojamiento(void);
-void bajaAlojamiento(void);
-void consultarAlojamiento(void);
-void listadoAlojamientos(void);
-void menuAlojamiento(void);
+void altaAlojamiento(sqlite3 *db);
+void bajaAlojamiento(sqlite3 *db);
+void consultarAlojamiento(sqlite3 *db);
+void listadoAlojamientos(sqlite3 *db);
+void menuAlojamiento(sqlite3 *db);
 
 #endif

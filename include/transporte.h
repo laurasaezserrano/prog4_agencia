@@ -1,7 +1,7 @@
 #ifndef TRANSPORTE_H_
 #define TRANSPORTE_H_
 
-#include "../include/sqlite3.h"
+#include "sqlite3.h"
 
 typedef struct {
     char codigo[10];

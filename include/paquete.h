@@ -1,5 +1,6 @@
 #ifndef PAQUETE_H_
 #define PAQUETE_H_
+#include "sqlite3.h"
 
 typedef struct {
     int  cod;
@@ -12,10 +13,10 @@ typedef struct {
     int  activo;
 } Paquete;
 
-void crearPaquete(void);
-void eliminarPaquete(void);
-void consultarPaquete(void);
-void listadoPaquetes(void);
+void crearPaquete(sqlite3 *db);
+void eliminarPaquete(sqlite3 *db);
+void consultarPaquete(sqlite3 *db);
+void listadoPaquetes(sqlite3 *db);
 void menuPaquetes(sqlite3 *db);
 
 #endif /* PAQUETE_H_ */

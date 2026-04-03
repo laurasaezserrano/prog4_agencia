@@ -35,7 +35,7 @@ int guardarPaquete(Paquete p) {
 }
 
 // CREAR
-void crearPaquete(void) {
+void crearPaquete(sqlite3 *db) {
     Paquete p;
 
     printf("Codigo: ");
@@ -69,7 +69,7 @@ void crearPaquete(void) {
 }
 
 // ELIMINAR (baja lógica)
-void eliminarPaquete(void) {
+void eliminarPaquete(sqlite3 *db) {
     FILE *f = fopen(ARCHIVO, "rb+");
     Paquete p;
     int codigo;
@@ -95,7 +95,7 @@ void eliminarPaquete(void) {
 }
 
 // CONSULTAR
-void consultarPaquete(void) {
+void consultarPaquete(sqlite3 *db) {
     FILE *f = fopen(ARCHIVO, "rb");
     Paquete p;
     int codigo;
@@ -125,7 +125,7 @@ void consultarPaquete(void) {
 }
 
 // LISTADO
-void listadoPaquetes(void) {
+void listadoPaquetes(sqlite3 *db) {
     FILE *f = fopen(ARCHIVO, "rb");
     Paquete p;
 
@@ -166,10 +166,10 @@ void menuPaquetes(sqlite3 *db) {
         scanf("%d", &opcion);
 
         switch (opcion) {
-            case 1: crearPaquete(); break;
-            case 2: eliminarPaquete(); break;
-            case 3: consultarPaquete(); break;
-            case 4: listadoPaquetes(); break;
+            case 1: crearPaquete(db); break;
+            case 2: eliminarPaquete(db); break;
+            case 3: consultarPaquete(db); break;
+            case 4: listadoPaquetes(db); break;
             case 0: printf("Volviendo al menú principal...\n"); break;
             default: printf("Opción no válida.\n");
         }

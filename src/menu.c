@@ -29,10 +29,10 @@ void mostrar_menu(sqlite3 *db) {
             	menuPaquetes(db);
                 break;
             case 3:
-                printf("Alojamientos...\n");
+                menuAlojamiento(db);
                 break;
             case 4:
-                printf("Transportes...\n");
+                menuTransporte(db);
                 break;
         }
 

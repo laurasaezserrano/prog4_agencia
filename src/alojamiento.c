@@ -22,7 +22,7 @@ void guardarAlojamiento(Alojamiento a) {
 }
 
 // ALTA
-void altaAlojamiento(void) {
+void altaAlojamiento(sqlite3 *db) {
     Alojamiento a;
 
     printf("Codigo: ");
@@ -48,7 +48,7 @@ void altaAlojamiento(void) {
 }
 
 // BAJA (lógica)
-void bajaAlojamiento(void) {
+void bajaAlojamiento(sqlite3 *db) {
     FILE *f = fopen(ARCHIVO, "rb+");
     Alojamiento a;
     char codigo[10];
@@ -74,7 +74,7 @@ void bajaAlojamiento(void) {
 }
 
 // CONSULTAR
-void consultarAlojamiento(void) {
+void consultarAlojamiento(sqlite3 *db) {
     FILE *f = fopen(ARCHIVO, "rb");
     Alojamiento a;
     char codigo[10];
@@ -102,7 +102,7 @@ void consultarAlojamiento(void) {
 }
 
 // LISTADO
-void listadoAlojamientos(void) {
+void listadoAlojamientos(sqlite3 *db) {
     FILE *f = fopen(ARCHIVO, "rb");
     Alojamiento a;
 
@@ -127,7 +127,7 @@ void listadoAlojamientos(void) {
 }
 
 // MENU
-void menuAlojamiento(void) {
+void menuAlojamiento(sqlite3 *db) {
     int opcion;
 
     do {
@@ -141,10 +141,10 @@ void menuAlojamiento(void) {
         scanf("%d", &opcion);
 
         switch (opcion) {
-            case 1: altaAlojamiento(); break;
-            case 2: bajaAlojamiento(); break;
-            case 3: consultarAlojamiento(); break;
-            case 4: listadoAlojamientos(); break;
+            case 1: altaAlojamiento(db); break;
+            case 2: bajaAlojamiento(db); break;
+            case 3: consultarAlojamiento(db); break;
+            case 4: listadoAlojamientos(db); break;
         }
 
     } while (opcion != 0);

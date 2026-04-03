@@ -138,18 +138,12 @@ int alta_cliente(sqlite3 *db) {
 
 int baja_cliente(sqlite3 *db) {
     sqlite3_stmt *stmt = NULL;
-    const char *sql =
-        "UPDATE clientes SET activo = 0 WHERE dni = ? AND activo = 1;";
-
+    // MODIFICADO: UPPER(dni) para ignorar mayúsculas y activo = 1 para asegurar que está vivo
+    const char *sql = "UPDATE clientes SET activo = 0 WHERE UPPER(dni) = UPPER(?) AND activo = 1;";
     char dni[16];
 
     printf("\n--- BAJA DE CLIENTE ---\n");
     leer_cadena("Introduzca DNI del cliente a dar de baja: ", dni, sizeof(dni));
-
-    if (!existe_cliente_dni(db, dni)) {
-        printf("Error: no existe ningun cliente con ese DNI.\n");
-        return 1;
-    }
 
     if (sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) != SQLITE_OK) {
         printf("Error preparando UPDATE: %s\n", sqlite3_errmsg(db));
@@ -159,19 +153,17 @@ int baja_cliente(sqlite3 *db) {
     sqlite3_bind_text(stmt, 1, dni, -1, SQLITE_STATIC);
 
     if (sqlite3_step(stmt) != SQLITE_DONE) {
-        printf("Error al dar de baja al cliente: %s\n", sqlite3_errmsg(db));
-        sqlite3_finalize(stmt);
-        return 1;
-    }
-
-    if (sqlite3_changes(db) == 0) {
-        printf("No se ha realizado ninguna baja. Puede que el cliente ya estuviera inactivo.\n");
-        sqlite3_finalize(stmt);
-        return 1;
+        printf("Error al ejecutar la baja: %s\n", sqlite3_errmsg(db));
+    } else {
+        // MODIFICADO: Ahora comprobamos si de verdad se cambió algo en la BD
+        if (sqlite3_changes(db) > 0) {
+            printf("Cliente con DNI %s dado de baja (desactivado) correctamente.\n", dni);
+        } else {
+            printf("No se encontro el cliente activo con ese DNI.\n");
+        }
     }
 
     sqlite3_finalize(stmt);
-    printf("Cliente dado de baja correctamente.\n");
     return 0;
 }
 
@@ -255,9 +247,9 @@ int buscar_cliente_por_dni(sqlite3 *db, const char *dni) {
 
 void listar_clientes(sqlite3 *db) {
     sqlite3_stmt *stmt = NULL;
-    const char *sql =
-        "SELECT id, dni, nombre, apellidos, telefono, email, fecha_nacimiento, activo "
-        "FROM clientes ORDER BY apellidos, nombre;";
+    // MODIFICADO: Añadido "WHERE activo = 1" para no mostrar los borrados
+    const char *sql = "SELECT id, dni, nombre, apellidos, telefono, email, fecha_nacimiento, activo "
+                      "FROM clientes WHERE activo = 1 ORDER BY apellidos, nombre;";
 
     if (sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) != SQLITE_OK) {
         printf("Error preparando SELECT: %s\n", sqlite3_errmsg(db));
@@ -307,8 +299,8 @@ static void limpiar_buffer(void) {
 
 static void leer_cadena(const char *mensaje, char *buffer, int tam) {
     printf("%s", mensaje);
-
     if (fgets(buffer, tam, stdin) != NULL) {
+        // MODIFICADO: Esta línea elimina el salto de línea al final de la cadena
         buffer[strcspn(buffer, "\n")] = '\0';
     } else {
         buffer[0] = '\0';

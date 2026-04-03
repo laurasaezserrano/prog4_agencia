@@ -3,7 +3,9 @@
 #include "../include/alojamiento.h"
 #include "../include/transporte.h"
 #include "../include/paquete.h"
+#include "../include/clientes.h"
 #include <stdio.h>
+
 
 void mostrar_menu(sqlite3 *db) {
     int opcion;
@@ -21,7 +23,7 @@ void mostrar_menu(sqlite3 *db) {
 
         switch(opcion) {
             case 1:
-                printf("Clientes...\n");
+                menu_clientes(db);
                 break;
             case 2:
                 printf("Paquetes...\n");
@@ -36,3 +38,4 @@ void mostrar_menu(sqlite3 *db) {
 
     } while(opcion != 0);
 }
+

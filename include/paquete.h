@@ -16,6 +16,6 @@ void crearPaquete(void);
 void eliminarPaquete(void);
 void consultarPaquete(void);
 void listadoPaquetes(void);
-void menuPaquetes(void);
+void menuPaquetes(sqlite3 *db);
 
 #endif /* PAQUETE_H_ */

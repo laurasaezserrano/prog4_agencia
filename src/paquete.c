@@ -152,7 +152,7 @@ void listadoPaquetes(void) {
 }
 
 // MENU
-void menuPaquetes(void) {
+void menuPaquetes(sqlite3 *db) {
     int opcion;
 
     do {

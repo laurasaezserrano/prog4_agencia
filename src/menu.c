@@ -26,7 +26,7 @@ void mostrar_menu(sqlite3 *db) {
                 menu_clientes(db);
                 break;
             case 2:
-                printf("Paquetes...\n");
+            	menuPaquetes(db);
                 break;
             case 3:
                 printf("Alojamientos...\n");

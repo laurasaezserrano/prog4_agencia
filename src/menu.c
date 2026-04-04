@@ -32,7 +32,7 @@ void mostrar_menu(sqlite3 *db) {
             	menuAlojamiento(db);
                 break;
             case 4:
-            	menuTransporte();
+            	menuTransporte(db);
             	break;
             case 0:
             	printf("\nSaliendo...\n");
@@ -66,7 +66,7 @@ void mostrar_menu_cliente(sqlite3 *db) {
             	menuAlojamiento_cliente(db);
                 break;
             case 3:
-            	menuTransporte_cliente();
+            	menuTransporte_cliente(db);
             	break;
             case 0:
             	printf("\nSaliendo...\n");

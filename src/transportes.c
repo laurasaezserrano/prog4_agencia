@@ -161,7 +161,11 @@ void listadoTransportes(void) {
 }
 
 // MENU
+<<<<<<< HEAD
+void menuTransporte() {
+=======
 void menuTransporte(sqlite3 *db) {
+>>>>>>> branch 'main' of git@github.com:laurasaezserrano/prog4_agencia.git
     int opcion;
 
     do {

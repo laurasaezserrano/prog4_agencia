@@ -29,11 +29,26 @@ void mostrar_menu(sqlite3 *db) {
             	menuPaquetes(db);
                 break;
             case 3:
+<<<<<<< HEAD
+            menuAlojamiento();
+            break;
+=======
                 menuAlojamiento(db);
                 break;
+>>>>>>> branch 'main' of git@github.com:laurasaezserrano/prog4_agencia.git
             case 4:
+<<<<<<< HEAD
+            menuTransporte();
+            break;
+            case 0:
+            printf("\nSaliendo...\n");
+            break;
+            default:
+            printf("Opción no válida. Intente de nuevo.\n");
+=======
                 menuTransporte(db);
                 break;
+>>>>>>> branch 'main' of git@github.com:laurasaezserrano/prog4_agencia.git
         }
 
     } while(opcion != 0);

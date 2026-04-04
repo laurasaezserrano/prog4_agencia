@@ -127,7 +127,11 @@ void listadoAlojamientos(sqlite3 *db) {
 }
 
 // MENU
+<<<<<<< HEAD
+void menuAlojamiento() {
+=======
 void menuAlojamiento(sqlite3 *db) {
+>>>>>>> branch 'main' of git@github.com:laurasaezserrano/prog4_agencia.git
     int opcion;
 
     do {

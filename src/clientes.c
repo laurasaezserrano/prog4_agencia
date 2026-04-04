@@ -138,20 +138,44 @@ int alta_cliente(sqlite3 *db) {
 
 int baja_cliente(sqlite3 *db) {
     sqlite3_stmt *stmt = NULL;
-    const char *sql =
+    const char *sql_buscar =
+        "SELECT activo FROM clientes WHERE dni = ?;";
+    const char *sql_baja =
         "UPDATE clientes SET activo = 0 WHERE dni = ? AND activo = 1;";
 
     char dni[16];
+    int activo = -1;
 
     printf("\n--- BAJA DE CLIENTE ---\n");
     leer_cadena("Introduzca DNI del cliente a dar de baja: ", dni, sizeof(dni));
 
-    if (!existe_cliente_dni(db, dni)) {
-        printf("Error: no existe ningun cliente con ese DNI.\n");
+    /* Primero comprobamos si existe y su estado actual */
+    if (sqlite3_prepare_v2(db, sql_buscar, -1, &stmt, NULL) != SQLITE_OK) {
+        printf("Error preparando consulta: %s\n", sqlite3_errmsg(db));
         return 1;
     }
 
-    if (sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) != SQLITE_OK) {
+    sqlite3_bind_text(stmt, 1, dni, -1, SQLITE_STATIC);
+
+    if (sqlite3_step(stmt) == SQLITE_ROW) {
+        activo = sqlite3_column_int(stmt, 0);
+    }
+
+    sqlite3_finalize(stmt);
+    stmt = NULL;
+
+    if (activo == -1) {
+        printf("Error: no existe ningun cliente con DNI %s.\n", dni);
+        return 1;
+    }
+
+    if (activo == 0) {
+        printf("Error: el cliente con DNI %s ya estaba dado de baja.\n", dni);
+        return 1;
+    }
+
+    /* Aplicamos la baja logica */
+    if (sqlite3_prepare_v2(db, sql_baja, -1, &stmt, NULL) != SQLITE_OK) {
         printf("Error preparando UPDATE: %s\n", sqlite3_errmsg(db));
         return 1;
     }
@@ -164,17 +188,10 @@ int baja_cliente(sqlite3 *db) {
         return 1;
     }
 
-    if (sqlite3_changes(db) == 0) {
-        printf("No se ha realizado ninguna baja. Puede que el cliente ya estuviera inactivo.\n");
-        sqlite3_finalize(stmt);
-        return 1;
-    }
-
     sqlite3_finalize(stmt);
-    printf("Cliente dado de baja correctamente.\n");
+    printf("Cliente con DNI %s dado de baja correctamente.\n", dni);
     return 0;
 }
-
 int modificar_cliente(sqlite3 *db) {
     sqlite3_stmt *stmt = NULL;
     const char *sql =

@@ -24,6 +24,10 @@ int guardarPaquete(Paquete p) {
 
     // fwrite devuelve el número de elementos escritos correctamente
     size_t escritos = fwrite(&p, sizeof(Paquete), 1, f);
+<<<<<<< HEAD
+
+=======
+>>>>>>> branch 'main' of git@github.com:laurasaezserrano/prog4_agencia.git
     fclose(f);
 
     if (escritos == 1) {

@@ -19,11 +19,12 @@ void db_cerrar(sqlite3 *db) {
 int db_crear_tablas(sqlite3 *db) {
     char *err = NULL;
 
-    const char *sql_admin =
-        "CREATE TABLE IF NOT EXISTS administradores ("
+    const char *sql_usuarios =
+        "CREATE TABLE IF NOT EXISTS usuarios ("
         "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-        "usuario TEXT NOT NULL UNIQUE, "
-        "clave TEXT NOT NULL"
+        "username TEXT NOT NULL UNIQUE, "
+        "password TEXT NOT NULL, "
+        "rol TEXT NOT NULL" // 'ADMIN' o 'CLIENTE'
         ");";
 
     const char *sql_clientes =
@@ -45,11 +46,11 @@ int db_crear_tablas(sqlite3 *db) {
         "direccion TEXT, "
         "tipo TEXT, "
         "cod_ciudad TEXT, "
-        "activo INTEGER DEFAULT 1";
-    	");";
+        "activo INTEGER DEFAULT 1"
+        ");";
 
     const char *sql_paquetes =
-    	"CREATE TABLE IF NOT EXISTS paquetes ("
+        "CREATE TABLE IF NOT EXISTS paquetes ("
         "codigo INTEGER PRIMARY KEY, "
         "nombre TEXT NOT NULL, "
         "precio REAL, "
@@ -57,8 +58,8 @@ int db_crear_tablas(sqlite3 *db) {
         "origen TEXT, "
         "plazas_totales INTEGER, "
         "plazas_disponibles INTEGER, "
-        "activo INTEGER DEFAULT 1";
-    	");";
+        "activo INTEGER DEFAULT 1"
+        ");";
 
     const char *sql_transportes =
         "CREATE TABLE IF NOT EXISTS transportes ("
@@ -68,48 +69,44 @@ int db_crear_tablas(sqlite3 *db) {
         "fecha_llegada TEXT, "
         "id_paquete INTEGER, "
         "activo INTEGER DEFAULT 1, "
-        "FOREIGN KEY(id_paquete) REFERENCES paquetes(codigo)";
+        "FOREIGN KEY(id_paquete) REFERENCES paquetes(codigo)"
         ");";
 
-    /* Admin por defecto */
+    // INSERTAR ADMIN (Si no existe)
     const char *sql_insert_admin =
-        "INSERT OR IGNORE INTO administradores (id, usuario, clave) "
-        "VALUES (1, 'admin', '1234');";
+        "INSERT OR IGNORE INTO usuarios (username, password, rol) "
+        "VALUES ('admin', '1234', 'ADMIN');";
 
-    if (sqlite3_exec(db, sql_admin, 0, 0, &err) != SQLITE_OK) {
-        printf("Error SQL al crear administradores: %s\n", err);
-        sqlite3_free(err);
-        return 1;
+    // EJECUCIÓN DE TABLAS
+    if (sqlite3_exec(db, sql_usuarios, 0, 0, &err) != SQLITE_OK) {
+        printf("Error SQL al crear usuarios: %s\n", err);
+        sqlite3_free(err); return 1;
     }
 
     if (sqlite3_exec(db, sql_clientes, 0, 0, &err) != SQLITE_OK) {
         printf("Error SQL al crear clientes: %s\n", err);
-        sqlite3_free(err);
-        return 1;
+        sqlite3_free(err); return 1;
     }
 
     if (sqlite3_exec(db, sql_alojamientos, 0, 0, &err) != SQLITE_OK) {
-            printf("Error SQL al crear alojamientos: %s\n", err);
-            sqlite3_free(err);
-            return 1;
-        }
+        printf("Error SQL al crear alojamientos: %s\n", err);
+        sqlite3_free(err); return 1;
+    }
 
     if (sqlite3_exec(db, sql_paquetes, 0, 0, &err) != SQLITE_OK) {
-            printf("Error SQL al crear paquetes: %s\n", err);
-            sqlite3_free(err);
-            return 1;
-        }
+        printf("Error SQL al crear paquetes: %s\n", err);
+        sqlite3_free(err); return 1;
+    }
 
     if (sqlite3_exec(db, sql_transportes, 0, 0, &err) != SQLITE_OK) {
-            printf("Error SQL al crear transportes: %s\n", err);
-            sqlite3_free(err);
-            return 1;
-        }
+        printf("Error SQL al crear transportes: %s\n", err);
+        sqlite3_free(err); return 1;
+    }
 
+    // EJECUCIÓN INSERT ADMIN
     if (sqlite3_exec(db, sql_insert_admin, 0, 0, &err) != SQLITE_OK) {
         printf("Error SQL al insertar admin: %s\n", err);
-        sqlite3_free(err);
-        return 1;
+        sqlite3_free(err); return 1;
     }
 
     return 0;

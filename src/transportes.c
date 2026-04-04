@@ -160,8 +160,7 @@ void listadoTransportes(void) {
     fclose(f);
 }
 
-// MENU
-
+// MENU ADMIN
 void menuTransporte(sqlite3 *db) {
     int opcion;
 
@@ -182,6 +181,26 @@ void menuTransporte(sqlite3 *db) {
             case 3: consultarTransporte(); break;
             case 4: asociarTransporte(); break;
             case 5: listadoTransportes(); break;
+        }
+
+    } while (opcion != 0);
+}
+
+// MENU PARA CLIENTES
+void menuTransporte(sqlite3 *db) {
+    int opcion;
+
+    do {
+        printf("\n--- MENU TRANSPORTES ---\n");
+        printf("1. Consultar transporte\n");
+        printf("2. Listado transportes\n");
+        printf("0. Salir\n");
+        printf("Opcion: ");
+        scanf("%d", &opcion);
+
+        switch (opcion) {
+            case 1: consultarTransporte(); break;
+            case 2: listadoTransportes(); break;
         }
 
     } while (opcion != 0);

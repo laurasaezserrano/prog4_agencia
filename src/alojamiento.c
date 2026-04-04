@@ -126,8 +126,7 @@ void listadoAlojamientos(sqlite3 *db) {
     fclose(f);
 }
 
-// MENU
-
+// MENU ADMIN
 void menuAlojamiento(sqlite3 *db) {
     int opcion;
 
@@ -146,6 +145,26 @@ void menuAlojamiento(sqlite3 *db) {
             case 2: bajaAlojamiento(db); break;
             case 3: consultarAlojamiento(db); break;
             case 4: listadoAlojamientos(db); break;
+        }
+
+    } while (opcion != 0);
+}
+
+// MENU PARA CLIENTES
+void menuAlojamiento(sqlite3 *db) {
+    int opcion;
+
+    do {
+        printf("\n--- MENU ALOJAMIENTOS ---\n");
+        printf("1. Consultar alojamiento\n");
+        printf("2. Listado alojamientos\n");
+        printf("0. Salir\n");
+        printf("Opcion: ");
+        scanf("%d", &opcion);
+
+        switch (opcion) {
+            case 1: consultarAlojamiento(db); break;
+            case 2: listadoAlojamientos(db); break;
         }
 
     } while (opcion != 0);

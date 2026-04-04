@@ -152,7 +152,7 @@ void listadoPaquetes(sqlite3 *db) {
     fclose(f);
 }
 
-// MENU
+// MENU ADMIN
 void menuPaquetes(sqlite3 *db) {
     int opcion;
 
@@ -171,6 +171,28 @@ void menuPaquetes(sqlite3 *db) {
             case 2: eliminarPaquete(db); break;
             case 3: consultarPaquete(db); break;
             case 4: listadoPaquetes(db); break;
+            case 0: printf("Volviendo al menú principal...\n"); break;
+            default: printf("Opción no válida.\n");
+        }
+
+    } while (opcion != 0);
+}
+
+//MENU PARA CLIENTES
+void menuPaquetes_cliente(sqlite3 *db) {
+    int opcion;
+
+    do {
+        printf("\n--- MENU PAQUETES ---\n");
+        printf("1. Consultar paquete\n");
+        printf("2. Listado paquetes\n");
+        printf("0. Salir\n");
+        printf("Opcion: ");
+        scanf("%d", &opcion);
+
+        switch (opcion) {
+            case 1: consultarPaquete(db); break;
+            case 2: listadoPaquetes(db); break;
             case 0: printf("Volviendo al menú principal...\n"); break;
             default: printf("Opción no válida.\n");
         }

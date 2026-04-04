@@ -39,37 +39,37 @@ int db_crear_tablas(sqlite3 *db) {
         ");";
 
     const char *sql_alojamientos =
-            "CREATE TABLE IF NOT EXISTS alojamientos ("
-            "codigo TEXT PRIMARY KEY, "
-            "nombre TEXT NOT NULL, "
-            "direccion TEXT, "
-            "tipo TEXT, "
-            "cod_ciudad TEXT, "
-            "activo INTEGER DEFAULT 1"
-    		");";
+        "CREATE TABLE IF NOT EXISTS alojamientos ("
+        "codigo TEXT PRIMARY KEY, "
+        "nombre TEXT NOT NULL, "
+        "direccion TEXT, "
+        "tipo TEXT, "
+        "cod_ciudad TEXT, "
+        "activo INTEGER DEFAULT 1";
+    	");";
 
     const char *sql_paquetes =
-            "CREATE TABLE IF NOT EXISTS paquetes ("
-            "codigo INTEGER PRIMARY KEY, "
-            "nombre TEXT NOT NULL, "
-            "precio REAL, "
-            "destino TEXT, "
-            "origen TEXT, "
-            "plazas_totales INTEGER, "
-            "plazas_disponibles INTEGER, "
-            "activo INTEGER DEFAULT 1"
-    		");";
+    	"CREATE TABLE IF NOT EXISTS paquetes ("
+        "codigo INTEGER PRIMARY KEY, "
+        "nombre TEXT NOT NULL, "
+        "precio REAL, "
+        "destino TEXT, "
+        "origen TEXT, "
+        "plazas_totales INTEGER, "
+        "plazas_disponibles INTEGER, "
+        "activo INTEGER DEFAULT 1";
+    	");";
 
     const char *sql_transportes =
-            "CREATE TABLE IF NOT EXISTS transportes ("
-            "codigo TEXT PRIMARY KEY, "
-            "tipo TEXT, "
-            "fecha_salida TEXT, "
-            "fecha_llegada TEXT, "
-            "id_paquete INTEGER, "
-            "activo INTEGER DEFAULT 1, "
-            "FOREIGN KEY(id_paquete) REFERENCES paquetes(codigo)"
-            ");";
+        "CREATE TABLE IF NOT EXISTS transportes ("
+        "codigo TEXT PRIMARY KEY, "
+        "tipo TEXT, "
+        "fecha_salida TEXT, "
+        "fecha_llegada TEXT, "
+        "id_paquete INTEGER, "
+        "activo INTEGER DEFAULT 1, "
+        "FOREIGN KEY(id_paquete) REFERENCES paquetes(codigo)";
+        ");";
 
     /* Admin por defecto */
     const char *sql_insert_admin =

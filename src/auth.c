@@ -3,17 +3,15 @@
 #include "../include/auth.h"
 #include "../include/sqlite3.h"
 
-/* Función interna para limpiar el rastro del ENTER en el teclado */
 static void limpiar_buffer_auth() {
     int c;
     while ((c = getchar()) != '\n' && c != EOF);
 }
 
-/* Función para registrar un nuevo usuario en la base de datos */
 void registrar_usuario(sqlite3 *db) {
     sqlite3_stmt *stmt;
     char usuario[50], clave[50];
-    const char *sql = "INSERT INTO usuarios (username, password) VALUES (?, ?);";
+    const char *sql = "INSERT INTO usuarios (username, password, rol) VALUES (?, ?, 'CLIENTE');";
 
     printf("\n--- REGISTRO DE NUEVO USUARIO ---\n");
     printf("Elija nombre de usuario: ");
@@ -31,7 +29,7 @@ void registrar_usuario(sqlite3 *db) {
     sqlite3_bind_text(stmt, 2, clave, -1, SQLITE_STATIC);
 
     if (sqlite3_step(stmt) == SQLITE_DONE) {
-        printf("¡Usuario '%s' registrado con exito!\n", usuario);
+        printf("¡Usuario '%s' registrado con exito como CLIENTE!\n", usuario);
     } else {
         printf("Error: El usuario ya existe o hubo un fallo en la BD.\n");
     }
@@ -39,11 +37,11 @@ void registrar_usuario(sqlite3 *db) {
     sqlite3_finalize(stmt);
 }
 
-/* Función que comprueba si las credenciales existen en la tabla 'usuarios' */
-int verificar_credenciales(sqlite3 *db, const char *user, const char *pass) {
+
+int verificar_credenciales_rol(sqlite3 *db, const char *user, const char *pass) {
     sqlite3_stmt *stmt;
-    const char *sql = "SELECT COUNT(*) FROM usuarios WHERE username = ? AND password = ?;";
-    int encontrado = 0;
+    const char *sql = "SELECT rol FROM usuarios WHERE username = ? AND password = ?;";
+    int tipo = 0;
 
     if (sqlite3_prepare_v2(db, sql, -1, &stmt, NULL) != SQLITE_OK) {
         return 0;
@@ -53,14 +51,20 @@ int verificar_credenciales(sqlite3 *db, const char *user, const char *pass) {
     sqlite3_bind_text(stmt, 2, pass, -1, SQLITE_STATIC);
 
     if (sqlite3_step(stmt) == SQLITE_ROW) {
-        encontrado = sqlite3_column_int(stmt, 0);
+        const char *rol = (const char *)sqlite3_column_text(stmt, 0);
+
+        if (strcmp(rol, "ADMIN") == 0) {
+            tipo = 1;
+        } else if (strcmp(rol, "CLIENTE") == 0) {
+            tipo = 2;
+        }
     }
 
     sqlite3_finalize(stmt);
-    return encontrado > 0; // Retorna 1 (true) si coincide
+    return tipo;
 }
 
-/* Función principal de Login que devuelves al main */
+
 int login_admin(sqlite3 *db) {
     char usuario[50];
     char clave[50];
@@ -80,8 +84,7 @@ int login_admin(sqlite3 *db) {
         }
         limpiar_buffer_auth();
 
-        if (opcion == 0) return 0; // Cierra el programa
-
+        if (opcion == 0) return 0;
         if (opcion == 2) {
             registrar_usuario(db);
             continue;
@@ -95,10 +98,12 @@ int login_admin(sqlite3 *db) {
             scanf("%s", clave);
             limpiar_buffer_auth();
 
-            // Verificación contra la tabla de la base de datos
-            if (verificar_credenciales(db, usuario, clave)) {
+            //Obtenemos el rol
+            int resultado = verificar_credenciales_rol(db, usuario, clave);
+
+            if (resultado > 0) {
                 printf("Acceso concedido. Bienvenido %s.\n", usuario);
-                return 1;
+                return resultado; // Retorna 1 si es Admin, 2 si es Cliente
             } else {
                 printf("Usuario o clave incorrectos. Intente de nuevo.\n");
             }

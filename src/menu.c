@@ -60,13 +60,13 @@ void mostrar_menu_cliente(sqlite3 *db) {
 
         switch(opcion) {
             case 1:
-            	menuPaquetes_cliente()(db);
+            	menuPaquetes_cliente(db);
                 break;
             case 2:
-            	menuAlojamiento_cliente()(db);
+            	menuAlojamiento_cliente(db);
                 break;
             case 3:
-            	menuTransporte_cliente()();
+            	menuTransporte_cliente();
             	break;
             case 0:
             	printf("\nSaliendo...\n");

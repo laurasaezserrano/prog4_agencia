@@ -187,7 +187,7 @@ void menuTransporte(sqlite3 *db) {
 }
 
 // MENU PARA CLIENTES
-void menuTransporte(sqlite3 *db) {
+void menuTransporte_cliente(sqlite3 *db) {
     int opcion;
 
     do {

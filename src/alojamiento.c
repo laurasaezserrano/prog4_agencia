@@ -151,7 +151,7 @@ void menuAlojamiento(sqlite3 *db) {
 }
 
 // MENU PARA CLIENTES
-void menuAlojamiento(sqlite3 *db) {
+void menuAlojamiento_cliente(sqlite3 *db) {
     int opcion;
 
     do {

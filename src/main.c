@@ -29,16 +29,14 @@ int main() {
 
     printf("BD abierta\n");
 
-    // 3. Crear tablas e insertar el usuario 'admin' ('1234') si no existe
     db_crear_tablas(db);
 
     printf("Entrando en el sistema de acceso...\n");
 
-    /* MODIFICACIÓN:
-       Llamamos a login_admin.
+    /*
        - Si devuelve 1: Es Administrador.
        - Si devuelve 2: Es Cliente.
-       - Si devuelve 0: Ha fallado o ha dado a Salir.
+       - Si devuelve 0: Salir.
     */
     int tipo_usuario = login_admin(db);
 
@@ -51,12 +49,10 @@ int main() {
     // 4. Redirección según el tipo de usuario
     if (tipo_usuario == 1) {
         printf("\nAcceso concedido como ADMINISTRADOR\n");
-        mostrar_menu(db); // Tu menú actual con todas las gestiones
+        mostrar_menu(db);
     }
     else if (tipo_usuario == 2) {
         printf("\nAcceso concedido como CLIENTE\n");
-        // Aquí llamarías a un menú restringido, por ejemplo:
-        // mostrar_menu_cliente(db);
         printf("Funcionalidad de cliente en desarrollo...\n");
     }
 

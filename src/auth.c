@@ -6,7 +6,7 @@ int login_admin(sqlite3 *db) {
 	char usuario[50];
 	char clave[50];
 
-	printf("===== LOGIN ADMIN =====\n");
+	printf("===== LOGIN =====\n");
 
     printf("Usuario: ");
     scanf("%s", usuario);

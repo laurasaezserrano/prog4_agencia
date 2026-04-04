@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "transporte.h"
+#include "../include/transporte.h"
 
 #define ARCHIVO "transportes.dat"
 
@@ -161,7 +161,11 @@ void listadoTransportes(void) {
 }
 
 // MENU
+<<<<<<< HEAD
 void menuTransporte() {
+=======
+void menuTransporte(sqlite3 *db) {
+>>>>>>> branch 'main' of git@github.com:laurasaezserrano/prog4_agencia.git
     int opcion;
 
     do {
@@ -176,7 +180,7 @@ void menuTransporte() {
         scanf("%d", &opcion);
 
         switch (opcion) {
-            case 1: altaTransporte(); break;
+            case 1: altaTransporte(db); break;
             case 2: bajaTransporte(); break;
             case 3: consultarTransporte(); break;
             case 4: asociarTransporte(); break;

@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "paquete.h"
+#include "../include/paquete.h"
 
 #define ARCHIVO "paquetes.dat"
 
@@ -24,7 +24,10 @@ int guardarPaquete(Paquete p) {
 
     // fwrite devuelve el número de elementos escritos correctamente
     size_t escritos = fwrite(&p, sizeof(Paquete), 1, f);
+<<<<<<< HEAD
 
+=======
+>>>>>>> branch 'main' of git@github.com:laurasaezserrano/prog4_agencia.git
     fclose(f);
 
     if (escritos == 1) {
@@ -36,7 +39,7 @@ int guardarPaquete(Paquete p) {
 }
 
 // CREAR
-void crearPaquete(void) {
+void crearPaquete(sqlite3 *db) {
     Paquete p;
 
     printf("Codigo: ");
@@ -60,7 +63,7 @@ void crearPaquete(void) {
     p.plazas_disponibles = p.plazas_totales;
     p.activo = 1;
 
-    if (guardar_paquete(&p)) {
+    if (guardarPaquete(p)) {
         printf("Paquete guardado correctamente.\n");
     } else {
         printf("Hubo un problema al guardar el paquete. Inténtelo de nuevo.\n");
@@ -70,7 +73,7 @@ void crearPaquete(void) {
 }
 
 // ELIMINAR (baja lógica)
-void eliminarPaquete(void) {
+void eliminarPaquete(sqlite3 *db) {
     FILE *f = fopen(ARCHIVO, "rb+");
     Paquete p;
     int codigo;
@@ -96,7 +99,7 @@ void eliminarPaquete(void) {
 }
 
 // CONSULTAR
-void consultarPaquete(void) {
+void consultarPaquete(sqlite3 *db) {
     FILE *f = fopen(ARCHIVO, "rb");
     Paquete p;
     int codigo;
@@ -126,7 +129,7 @@ void consultarPaquete(void) {
 }
 
 // LISTADO
-void listadoPaquetes(void) {
+void listadoPaquetes(sqlite3 *db) {
     FILE *f = fopen(ARCHIVO, "rb");
     Paquete p;
 
@@ -153,7 +156,7 @@ void listadoPaquetes(void) {
 }
 
 // MENU
-void menuPaquetes(void) {
+void menuPaquetes(sqlite3 *db) {
     int opcion;
 
     do {
@@ -167,10 +170,10 @@ void menuPaquetes(void) {
         scanf("%d", &opcion);
 
         switch (opcion) {
-            case 1: crearPaquete(); break;
-            case 2: eliminarPaquete(); break;
-            case 3: consultarPaquete(); break;
-            case 4: listadoPaquetes(); break;
+            case 1: crearPaquete(db); break;
+            case 2: eliminarPaquete(db); break;
+            case 3: consultarPaquete(db); break;
+            case 4: listadoPaquetes(db); break;
             case 0: printf("Volviendo al menú principal...\n"); break;
             default: printf("Opción no válida.\n");
         }

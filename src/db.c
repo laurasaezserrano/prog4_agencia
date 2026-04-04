@@ -39,16 +39,6 @@ int db_crear_tablas(sqlite3 *db) {
         ");";
 
     const char *sql_alojamientos =
-<<<<<<< HEAD
-        "CREATE TABLE IF NOT EXISTS alojamientos ("
-        "codigo TEXT PRIMARY KEY, "
-        "nombre TEXT NOT NULL, "
-        "direccion TEXT, "
-        "tipo TEXT, "
-        "cod_ciudad TEXT, "
-        "activo INTEGER DEFAULT 1";
-    	");";
-=======
             "CREATE TABLE IF NOT EXISTS alojamientos ("
             "codigo TEXT PRIMARY KEY, "
             "nombre TEXT NOT NULL, "
@@ -57,21 +47,8 @@ int db_crear_tablas(sqlite3 *db) {
             "cod_ciudad TEXT, "
             "activo INTEGER DEFAULT 1"
     		");";
->>>>>>> branch 'main' of git@github.com:laurasaezserrano/prog4_agencia.git
 
     const char *sql_paquetes =
-<<<<<<< HEAD
-        "CREATE TABLE IF NOT EXISTS paquetes ("
-        "codigo INTEGER PRIMARY KEY, "
-        "nombre TEXT NOT NULL, "
-        "precio REAL, "
-        "destino TEXT, "
-        "origen TEXT, "
-        "plazas_totales INTEGER, "
-        "plazas_disponibles INTEGER, "
-        "activo INTEGER DEFAULT 1";
-    	");";
-=======
             "CREATE TABLE IF NOT EXISTS paquetes ("
             "codigo INTEGER PRIMARY KEY, "
             "nombre TEXT NOT NULL, "
@@ -82,20 +59,8 @@ int db_crear_tablas(sqlite3 *db) {
             "plazas_disponibles INTEGER, "
             "activo INTEGER DEFAULT 1"
     		");";
->>>>>>> branch 'main' of git@github.com:laurasaezserrano/prog4_agencia.git
 
     const char *sql_transportes =
-<<<<<<< HEAD
-        "CREATE TABLE IF NOT EXISTS transportes ("
-        "codigo TEXT PRIMARY KEY, "
-        "tipo TEXT, "
-        "fecha_salida TEXT, "
-        "fecha_llegada TEXT, "
-        "id_paquete INTEGER, "
-        "activo INTEGER DEFAULT 1, "
-        "FOREIGN KEY(id_paquete) REFERENCES paquetes(codigo)";
-        ");";
-=======
             "CREATE TABLE IF NOT EXISTS transportes ("
             "codigo TEXT PRIMARY KEY, "
             "tipo TEXT, "
@@ -105,7 +70,6 @@ int db_crear_tablas(sqlite3 *db) {
             "activo INTEGER DEFAULT 1, "
             "FOREIGN KEY(id_paquete) REFERENCES paquetes(codigo)"
             ");";
->>>>>>> branch 'main' of git@github.com:laurasaezserrano/prog4_agencia.git
 
     /* Admin por defecto */
     const char *sql_insert_admin =

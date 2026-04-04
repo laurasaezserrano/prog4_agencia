@@ -192,6 +192,7 @@ int baja_cliente(sqlite3 *db) {
     printf("Cliente con DNI %s dado de baja correctamente.\n", dni);
     return 0;
 }
+
 int modificar_cliente(sqlite3 *db) {
     sqlite3_stmt *stmt = NULL;
     const char *sql =

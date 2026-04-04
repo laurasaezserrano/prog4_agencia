@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h> // Necesario para strcmp
 #include "../include/config.h"
 #include "../include/db.h"
 #include "../include/auth.h"
@@ -12,6 +13,7 @@ int main() {
     Config cfg;
     sqlite3 *db;
 
+    // 1. Cargar configuración
     if (cargar_config("data/config.ini", &cfg) != 0) {
         printf("Error cargando configuración\n");
         return 1;
@@ -19,6 +21,7 @@ int main() {
 
     printf("Config cargada\n");
 
+    // 2. Abrir Base de Datos
     if (db_abrir(&db, cfg.db_path) != 0) {
         printf("Error abriendo base de datos\n");
         return 1;
@@ -26,22 +29,39 @@ int main() {
 
     printf("BD abierta\n");
 
+    // 3. Crear tablas e insertar el usuario 'admin' ('1234') si no existe
     db_crear_tablas(db);
 
-    printf("Entrando en login...\n");
+    printf("Entrando en el sistema de acceso...\n");
 
-    if (!login_admin(db)) {
-        printf("Acceso denegado\n");
+    /* MODIFICACIÓN:
+       Llamamos a login_admin.
+       - Si devuelve 1: Es Administrador.
+       - Si devuelve 2: Es Cliente.
+       - Si devuelve 0: Ha fallado o ha dado a Salir.
+    */
+    int tipo_usuario = login_admin(db);
+
+    if (tipo_usuario == 0) {
+        printf("Saliendo del programa...\n");
         db_cerrar(db);
-        return 1;
+        return 0;
     }
 
-    printf("Login correcto\n");
+    // 4. Redirección según el tipo de usuario
+    if (tipo_usuario == 1) {
+        printf("\nAcceso concedido como ADMINISTRADOR\n");
+        mostrar_menu(db); // Tu menú actual con todas las gestiones
+    }
+    else if (tipo_usuario == 2) {
+        printf("\nAcceso concedido como CLIENTE\n");
+        // Aquí llamarías a un menú restringido, por ejemplo:
+        // mostrar_menu_cliente(db);
+        printf("Funcionalidad de cliente en desarrollo...\n");
+    }
 
-    mostrar_menu(db);
-
+    // 5. Cierre
     db_cerrar(db);
-
     printf("Fin del programa\n");
 
     return 0;

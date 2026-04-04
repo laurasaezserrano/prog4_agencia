@@ -10,7 +10,7 @@ typedef struct {
 } Sesion;
 
 int login_admin(sqlite3 *db);
-int login(sqlite3 *db, const char *usuario, const char *password);
-void logout(void);
+void registrar_usuario(sqlite3 *db);
+int verificar_credenciales(sqlite3 *db, const char *user, const char *pass);
 
 #endif /* AUTH_H_ */

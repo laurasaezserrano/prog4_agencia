@@ -29,28 +29,52 @@ void mostrar_menu(sqlite3 *db) {
             	menuPaquetes(db);
                 break;
             case 3:
-<<<<<<< HEAD
-            menuAlojamiento();
-            break;
-=======
-                menuAlojamiento(db);
+            	menuAlojamiento(db);
                 break;
->>>>>>> branch 'main' of git@github.com:laurasaezserrano/prog4_agencia.git
             case 4:
-<<<<<<< HEAD
-            menuTransporte();
-            break;
+            	menuTransporte();
+            	break;
             case 0:
-            printf("\nSaliendo...\n");
-            break;
+            	printf("\nSaliendo...\n");
+            	break;
             default:
-            printf("Opción no válida. Intente de nuevo.\n");
-=======
-                menuTransporte(db);
-                break;
->>>>>>> branch 'main' of git@github.com:laurasaezserrano/prog4_agencia.git
+            	printf("Opción no válida. Intente de nuevo.\n");
         }
 
     } while(opcion != 0);
 }
 
+void mostrar_menu_cliente(sqlite3 *db) {
+
+    int opcion;
+
+    do {
+        printf("\n===== MENU PRINCIPAL =====\n");
+        printf("1. Paquetes\n");
+        printf("2. Alojamientos\n");
+        printf("3. Transportes\n");
+        printf("0. Salir\n");
+        printf("Opcion: ");
+
+        scanf("%d", &opcion);
+
+        switch(opcion) {
+            case 1:
+            	menuPaquetes(db);
+                break;
+            case 2:
+            	menuAlojamiento(db);
+                break;
+            case 3:
+            	menuTransporte();
+            	break;
+            case 0:
+            	printf("\nSaliendo...\n");
+            	break;
+            default:
+            	printf("Opción no válida. Intente de nuevo.\n");
+        }
+
+    } while(opcion != 0);
+
+}

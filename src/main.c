@@ -53,7 +53,7 @@ int main() {
     }
     else if (tipo_usuario == 2) {
         printf("\nAcceso concedido como CLIENTE\n");
-        printf("Funcionalidad de cliente en desarrollo...\n");
+        mostrar_menu_cliente(db);
     }
 
     // 5. Cierre
